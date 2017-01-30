@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html data-ng-app="tradeApp" data-ng-controller="tradeCtrl">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<table border="1" style="border-collapse: collapse;">
+			<thead>
+				<tr>
+					<th>Group</th>
+					<th>Id</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>Mkt Value</th>
+				    <th>P/L</th> 
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="(symbol, groupTrades) in tradeData">
+					<th>{{symbol}}</th>
+					<th colspan="5"></th>
+				</tr>
+				<tr ng-repeat-start="(action, subGroupTrades) in groupTrades">
+					<td>{{action}}</td>
+					<th colspan="5"></th>
+				</tr>
+				<tr ng-repeat="trade in subGroupTrades">
+					<td></td>
+					<td>{{trade.transactionId}}</td>
+					<td>{{trade.quantity}}</td>
+					<td>{{trade.price}}</td>
+					<td>{{trade.marketValue}}</td>
+		            <td>{{trade.price * trade.quantity - trade.marketValue | number}} </td>
+				</tr>
+				<tr ng-repeat-end></tr>
+				<tr ng-repeat-end></tr>
+			</tbody>
+		</table>
+	</body>
+	 	
+	<script type="text/javascript" src="../assets/js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="../assets/js/tradeApp.js"></script>
+</html>
